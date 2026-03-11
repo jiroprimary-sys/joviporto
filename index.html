@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -115,12 +116,7 @@ color:black;
 border-radius:40px;
 font-weight:600;
 text-decoration:none;
-transition:.3s;
 }
-
-/* MAGNETIC BUTTON */
-
-.btn:hover{transform:scale(1.05)}
 
 /* SECTIONS */
 
@@ -155,22 +151,23 @@ border-radius:12px;
 }
 
 .film:hover{
-transform:rotateY(-15deg) scale(1.05);
+transform:rotateY(-12deg) scale(1.05);
 }
 
 /* CLIENTS */
 
 .clients{
 display:flex;
-gap:80px;
+gap:60px;
 justify-content:center;
 flex-wrap:wrap;
 }
 
 .clients img{
-height:60px;
-opacity:.6;
+height:50px;
+opacity:.7;
 filter:grayscale(100%);
+transition:.3s;
 }
 
 .clients img:hover{
@@ -179,10 +176,6 @@ filter:none;
 }
 
 /* TIMELINE */
-
-.timeline-container{
-overflow:hidden;
-}
 
 .timeline-track{
 display:flex;
@@ -197,11 +190,7 @@ border-radius:12px;
 border:1px solid #222;
 }
 
-.step:hover{
-background:#1a1a1a;
-}
-
-/* STORY SECTION */
+/* STORY */
 
 .story{
 max-width:700px;
@@ -247,6 +236,7 @@ pointer-events:auto;
 #modal iframe{
 width:80%;
 height:80%;
+border:none;
 }
 
 .close{
@@ -312,7 +302,7 @@ section{padding:80px 5%}
 
 <section class="hero">
 
-<iframe src="https://player.vimeo.com/video/1172508905?background=1&autoplay=1&loop=1&muted=1"></iframe>
+<iframe src="https://player.vimeo.com/video/1172508905?background=1&autoplay=1&loop=1&muted=1" allow="autoplay; fullscreen"></iframe>
 
 <div class="hero-content">
 
@@ -335,20 +325,20 @@ section{padding:80px 5%}
 <div class="netflix-row">
 
 <div class="film" data-video="https://player.vimeo.com/video/1172542673">
-<video muted loop>
-<source src="https://cdn.coverr.co/videos/coverr-film-camera-1603/1080p.mp4">
+<video muted playsinline loop preload="metadata">
+<source src="https://cdn.coverr.co/videos/coverr-film-camera-1603/1080p.mp4" type="video/mp4">
 </video>
 </div>
 
 <div class="film" data-video="https://player.vimeo.com/video/1172481792">
-<video muted loop>
-<source src="https://cdn.coverr.co/videos/coverr-video-editor-5176/1080p.mp4">
+<video muted playsinline loop preload="metadata">
+<source src="https://cdn.coverr.co/videos/coverr-video-editor-5176/1080p.mp4" type="video/mp4">
 </video>
 </div>
 
 <div class="film" data-video="https://player.vimeo.com/video/1172508905">
-<video muted loop>
-<source src="https://cdn.coverr.co/videos/coverr-film-production-1572/1080p.mp4">
+<video muted playsinline loop preload="metadata">
+<source src="https://cdn.coverr.co/videos/coverr-film-production-1572/1080p.mp4" type="video/mp4">
 </video>
 </div>
 
@@ -364,9 +354,9 @@ section{padding:80px 5%}
 
 <div class="clients">
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Global_TV_Logo.svg">
+<img src="https://cdn.worldvectorlogo.com/logos/global-tv.svg">
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/1/1a/Kompas_TV_Logo.svg">
+<img src="https://cdn.worldvectorlogo.com/logos/kompas-tv.svg">
 
 </div>
 
@@ -377,8 +367,6 @@ section{padding:80px 5%}
 <section id="timeline">
 
 <h2 class="section-title">Journey</h2>
-
-<div class="timeline-container">
 
 <div class="timeline-track">
 
@@ -400,8 +388,6 @@ section{padding:80px 5%}
 <div class="step">
 <h3>2025</h3>
 <p>Working with global agencies</p>
-</div>
-
 </div>
 
 </div>
@@ -431,7 +417,7 @@ sound design and visual motion to craft edits that feel immersive.
 
 <h2>Let's Work Together</h2>
 
-<p>hello@joviandra.com</p>
+<p>jiro.primary@gmail.com</p>
 
 </section>
 
@@ -441,25 +427,19 @@ sound design and visual motion to craft edits that feel immersive.
 
 <div class="close">✕</div>
 
-<iframe src="" frameborder="0"></iframe>
+<iframe src=""></iframe>
 
 </div>
 
 <script>
 
-/* INTRO ANIMATION */
-
 gsap.timeline()
 .to(".intro span",{opacity:1,y:-20,stagger:.2})
 .to(".intro",{opacity:0,delay:.6,pointerEvents:"none"})
 
-/* CURSOR */
-
 document.addEventListener("mousemove",e=>{
 gsap.to(".cursor-glow",{x:e.clientX,y:e.clientY,duration:.2})
 })
-
-/* HOVER VIDEO */
 
 document.querySelectorAll(".film").forEach(card=>{
 const vid=card.querySelector("video")
@@ -470,8 +450,6 @@ vid.pause()
 vid.currentTime=0
 })
 })
-
-/* MODAL */
 
 const modal=document.querySelector("#modal")
 const iframe=modal.querySelector("iframe")
@@ -488,7 +466,12 @@ modal.classList.remove("active")
 iframe.src=""
 }
 
-/* SCROLL */
+document.addEventListener("keydown",e=>{
+if(e.key==="Escape"){
+modal.classList.remove("active")
+iframe.src=""
+}
+})
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -503,8 +486,6 @@ start:"top 80%"
 }
 })
 })
-
-/* TIMELINE SCROLL */
 
 gsap.to(".timeline-track",{
 xPercent:-50,
