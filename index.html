@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
 <title>Jovi Andra | Cinematic Editor</title>
 
@@ -17,9 +18,9 @@
 *{margin:0;padding:0;box-sizing:border-box}
 
 body{
-font-family:Inter,sans-serif;
+font-family:Inter;
 background:#000;
-color:white;
+color:#fff;
 overflow-x:hidden;
 cursor:none;
 }
@@ -30,7 +31,7 @@ cursor:none;
 position:fixed;
 width:100%;
 height:100%;
-background:black;
+background:#000;
 display:flex;
 align-items:center;
 justify-content:center;
@@ -52,18 +53,18 @@ left:50%;
 transform:translateX(-50%);
 display:flex;
 gap:40px;
-background:rgba(255,255,255,.05);
-backdrop-filter:blur(20px);
 padding:14px 40px;
 border-radius:40px;
+background:rgba(255,255,255,.05);
+backdrop-filter:blur(20px);
 z-index:999;
 }
 
 nav a{
-color:white;
+color:#fff;
 text-decoration:none;
 font-size:14px;
-opacity:.8;
+opacity:.7;
 }
 
 nav a:hover{opacity:1}
@@ -91,96 +92,86 @@ opacity:.35;
 pointer-events:none;
 }
 
-.hero-content{
-position:relative;
-z-index:2;
-}
+.hero-content{position:relative;z-index:2}
 
 .hero h1{
-font-size:82px;
+font-size:84px;
 letter-spacing:10px;
-margin-bottom:20px;
 }
 
 .hero p{
 opacity:.7;
+margin-top:20px;
 font-size:18px;
 }
 
+/* BUTTON */
+
 .btn{
 display:inline-block;
-margin-top:30px;
-padding:14px 36px;
-background:white;
-color:black;
+margin-top:40px;
+padding:16px 38px;
+background:#fff;
+color:#000;
 border-radius:40px;
 font-weight:600;
 text-decoration:none;
-transition:.3s;
-}
-
-.btn:hover{
-transform:scale(1.05);
 }
 
 /* SECTIONS */
 
-section{padding:120px 10%}
+section{padding:140px 10%}
 
 .section-title{
 font-size:48px;
 margin-bottom:60px;
 }
 
-/* FILM STRIP */
+/* PROJECTS */
 
-.netflix-row{
+.projects{
 display:flex;
-gap:30px;
+gap:40px;
 overflow-x:auto;
-padding-bottom:40px;
 }
 
-.netflix-row::-webkit-scrollbar{display:none}
+.projects::-webkit-scrollbar{display:none}
 
-.film{
+.project{
 min-width:420px;
+transition:.5s;
 cursor:pointer;
-transition:1s;
-perspective:1200px;
 }
 
-.film video{
+.project video{
 width:100%;
-border-radius:12px;
+border-radius:14px;
 }
 
-.film:hover{
-transform:rotateY(-12deg) scale(1.05);
+.project:hover{
+transform:rotateY(-15deg) scale(1.08);
 }
 
-/* PREMIUM CLIENT LOGOS */
+/* CLIENTS */
 
 .clients{
 display:flex;
 gap:80px;
 justify-content:center;
 flex-wrap:wrap;
-align-items:center;
-margin-top:40px;
 }
 
 .clients img{
-height:60px;
+height:50px;
+filter:grayscale(100%);
 opacity:.6;
-filter:grayscale(100%) brightness(1.6);
-transition:all .5s ease;
+transition:.4s;
 }
 
 .clients img:hover{
 opacity:1;
 filter:none;
-transform:scale(1.08);
+transform:scale(1.1);
 }
 
 /* TIMELINE */
@@ -192,36 +183,49 @@ gap:60px;
 
 .step{
 min-width:260px;
-background:#111;
 padding:30px;
-border-radius:12px;
+background:#111;
 border:1px solid #222;
-transition:.4s;
+border-radius:12px;
 }
 
 .step:hover{
 background:#1a1a1a;
-transform:translateY(-6px);
 }
 
 /* STORY */
 
 .story{
-max-width:700px;
+max-width:900px;
+margin:auto;
+display:flex;
+flex-direction:column;
+gap:180px;
+}
+
+.story-block{
+opacity:0;
+transform:translateY(80px);
+}
+
+.story-block h2{
+font-size:52px;
+margin-bottom:20px;
+}
+
+.story-block p{
+opacity:.7;
 line-height:1.8;
-opacity:.8;
+font-size:20px;
 }
 
 /* CONTACT */
 
-.contact{
-text-align:center;
-padding-bottom:150px;
-}
+.contact{text-align:center}
 
 .contact h2{
 font-size:60px;
-margin-bottom:30px;
+margin-bottom:20px;
 }
 
 /* MODAL */
@@ -232,7 +236,7 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,.95);
+background:#000;
 display:flex;
 align-items:center;
 justify-content:center;
@@ -265,12 +269,13 @@ cursor:pointer;
 
 .cursor-glow{
 position:fixed;
-width:350px;
-height:350px;
-background:radial-gradient(circle,rgba(255,255,255,.08),transparent);
+width:400px;
+height:400px;
+background:radial-gradient(circle,rgba(255,255,255,.1),transparent);
 pointer-events:none;
 transform:translate(-50%,-50%);
 mix-blend-mode:overlay;
+filter:blur(12px);
 }
 
 /* MOBILE */
@@ -283,7 +288,7 @@ body{cursor:auto}
 
 .hero h1{font-size:44px}
 
-.film{min-width:300px}
+.project{min-width:300px}
 
 section{padding:80px 5%}
 
@@ -306,7 +311,7 @@ section{padding:80px 5%}
 <nav>
 <a href="#work">Work</a>
 <a href="#timeline">Journey</a>
-<a href="#about">Story</a>
+<a href="#story">Story</a>
 <a href="#contact">Contact</a>
 </nav>
 
@@ -326,23 +331,23 @@ section{padding:80px 5%}
 
 <h2 class="section-title">Featured Work</h2>
 
-<div class="netflix-row">
+<div class="projects">
 
-<div class="film" data-video="https://player.vimeo.com/video/1172542673">
-<video muted playsinline loop preload="metadata">
-<source src="https://cdn.coverr.co/videos/coverr-film-camera-1603/1080p.mp4" type="video/mp4">
+<div class="project" data-video="https://player.vimeo.com/video/1172542673">
+<video muted loop>
+<source src="https://cdn.coverr.co/videos/coverr-film-camera-1603/1080p.mp4">
 </video>
 </div>
 
-<div class="film" data-video="https://player.vimeo.com/video/1172481792">
-<video muted playsinline loop preload="metadata">
-<source src="https://cdn.coverr.co/videos/coverr-video-editor-5176/1080p.mp4" type="video/mp4">
+<div class="project" data-video="https://player.vimeo.com/video/1172481792">
+<video muted loop>
+<source src="https://cdn.coverr.co/videos/coverr-video-editor-5176/1080p.mp4">
 </video>
 </div>
 
-<div class="film" data-video="https://player.vimeo.com/video/1172508905">
-<video muted playsinline loop preload="metadata">
-<source src="https://cdn.coverr.co/videos/coverr-film-production-1572/1080p.mp4" type="video/mp4">
+<div class="project" data-video="https://player.vimeo.com/video/1172508905">
+<video muted loop>
+<source src="https://cdn.coverr.co/videos/coverr-film-production-1572/1080p.mp4">
 </video>
 </div>
 
@@ -356,9 +361,9 @@ section{padding:80px 5%}
 
 <div class="clients">
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Global_TV_logo.svg/512px-Global_TV_logo.svg.png">
+<img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Global_TV_Logo.svg">
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Kompas_TV_logo.svg/512px-Kompas_TV_logo.svg.png">
+<img src="https://upload.wikimedia.org/wikipedia/commons/1/1a/Kompas_TV_Logo.svg">
 
 </div>
 
@@ -370,47 +375,41 @@ section{padding:80px 5%}
 
 <div class="timeline-track">
 
-<div class="step">
-<h3>2019</h3>
-<p>Started editing YouTube content</p>
-</div>
-
-<div class="step">
-<h3>2021</h3>
-<p>Broadcast TV editing projects</p>
-</div>
-
-<div class="step">
-<h3>2023</h3>
-<p>Commercial editing for brands</p>
-</div>
-
-<div class="step">
-<h3>2025</h3>
-<p>Working with global agencies</p>
-</div>
+<div class="step"><h3>2019</h3><p>YouTube editing</p></div>
+<div class="step"><h3>2021</h3><p>Broadcast TV editing</p></div>
+<div class="step"><h3>2023</h3><p>Commercial brand projects</p></div>
+<div class="step"><h3>2025</h3><p>Global agency collaborations</p></div>
 
 </div>
 
 </section>
 
-<section id="about">
+<section id="story">
 
-<h2 class="section-title">Behind The Edit</h2>
+<div class="story">
 
-<p class="story">
-My work focuses on cinematic storytelling, pacing and emotional impact.
+<div class="story-block">
+<h2>Every Edit Tells a Story</h2>
+<p>Cinematic storytelling built with rhythm and emotion.</p>
+</div>
 
-From commercial edits to brand films, I combine narrative rhythm,
-sound design and visual motion to craft edits that feel immersive.
-</p>
+<div class="story-block">
+<h2>Built For Brands</h2>
+<p>Commercial edits designed for attention and impact.</p>
+</div>
+
+<div class="story-block">
+<h2>Precision & Craft</h2>
+<p>Sound design, pacing and motion combined for immersive edits.</p>
+</div>
+
+</div>
 
 </section>
 
 <section id="contact" class="contact">
 
 <h2>Let's Work Together</h2>
-
 <p>jiro.primary@gmail.com</p>
 
 </section>
@@ -422,15 +421,21 @@ sound design and visual motion to craft edits that feel immersive.
 
 <script>
 
+/* INTRO */
+
 gsap.timeline()
 .to(".intro span",{opacity:1,y:-20,stagger:.2})
 .to(".intro",{opacity:0,delay:.6,pointerEvents:"none"})
+
+/* CURSOR */
 
 document.addEventListener("mousemove",e=>{
 gsap.to(".cursor-glow",{x:e.clientX,y:e.clientY,duration:.2})
 })
 
-document.querySelectorAll(".film").forEach(card=>{
+/* HOVER VIDEO */
+
+document.querySelectorAll(".project").forEach(card=>{
 const vid=card.querySelector("video")
 
 card.addEventListener("mouseenter",()=>vid.play())
@@ -440,10 +445,12 @@ vid.currentTime=0
 })
 })
 
+/* MODAL */
+
 const modal=document.querySelector("#modal")
 const iframe=modal.querySelector("iframe")
 
-document.querySelectorAll(".film").forEach(card=>{
+document.querySelectorAll(".project").forEach(card=>{
 card.onclick=()=>{
 modal.classList.add("active")
 iframe.src=card.dataset.video+"?autoplay=1"
@@ -454,6 +461,8 @@ document.querySelector(".close").onclick=()=>{
 modal.classList.remove("active")
 iframe.src=""
 }
+
+/* SCROLL ANIMATION */
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -468,6 +477,21 @@ start:"top 80%"
 }
 })
 })
+
+/* STORY REVEAL */
+
+gsap.utils.toArray(".story-block").forEach(block=>{
+gsap.to(block,{
+opacity:1,
+y:0,
+scrollTrigger:{
+trigger:block,
+start:"top 80%"
+}
+})
+})
+
+/* TIMELINE */
 
 gsap.to(".timeline-track",{
 xPercent:-50,
