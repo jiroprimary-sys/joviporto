@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Jovi Andra | Cinematic Editor</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+<style>
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+font-family:Inter,sans-serif;
+background:#000;
+color:white;
+overflow-x:hidden;
+cursor:none;
+}
+
+/* INTRO */
+
+.intro{
+position:fixed;
+width:100%;
+height:100%;
+background:black;
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:10000;
+}
+
+.intro span{
+font-size:120px;
+opacity:0;
+margin:0 10px;
+}
+
+/* NAV */
+
+nav{
+position:fixed;
+top:30px;
+left:50%;
+transform:translateX(-50%);
+display:flex;
+gap:40px;
+background:rgba(255,255,255,.05);
+backdrop-filter:blur(20px);
+padding:14px 40px;
+border-radius:40px;
+z-index:999;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+font-size:14px;
+opacity:.8;
+}
+
+nav a:hover{opacity:1}
+
+/* HERO */
+
+.hero{
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+position:relative;
+overflow:hidden;
+}
+
+.hero iframe{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:120vw;
+height:120vh;
+opacity:.35;
+pointer-events:none;
+}
+
+.hero-content{
+position:relative;
+z-index:2;
+}
+
+.hero h1{
+font-size:82px;
+letter-spacing:10px;
+margin-bottom:20px;
+}
+
+.hero p{
+opacity:.7;
+font-size:18px;
+}
+
+.btn{
+display:inline-block;
+margin-top:30px;
+padding:14px 36px;
+background:white;
+color:black;
+border-radius:40px;
+font-weight:600;
+text-decoration:none;
+transition:.3s;
+}
+
+/* MAGNETIC BUTTON */
+
+.btn:hover{transform:scale(1.05)}
+
+/* SECTIONS */
+
+section{padding:120px 10%}
+
+.section-title{
+font-size:48px;
+margin-bottom:60px;
+}
+
+/* FILM STRIP */
+
+.netflix-row{
+display:flex;
+gap:30px;
+overflow-x:auto;
+padding-bottom:40px;
+}
+
+.netflix-row::-webkit-scrollbar{display:none}
+
+.film{
+min-width:420px;
+cursor:pointer;
+transition:1s;
+perspective:1200px;
+}
+
+.film video{
+width:100%;
+border-radius:12px;
+}
+
+.film:hover{
+transform:rotateY(-15deg) scale(1.05);
+}
+
+/* CLIENTS */
+
+.clients{
+display:flex;
+gap:80px;
+justify-content:center;
+flex-wrap:wrap;
+}
+
+.clients img{
+height:60px;
+opacity:.6;
+filter:grayscale(100%);
+}
+
+.clients img:hover{
+opacity:1;
+filter:none;
+}
+
+/* TIMELINE */
+
+.timeline-container{
+overflow:hidden;
+}
+
+.timeline-track{
+display:flex;
+gap:60px;
+}
+
+.step{
+min-width:260px;
+background:#111;
+padding:30px;
+border-radius:12px;
+border:1px solid #222;
+}
+
+.step:hover{
+background:#1a1a1a;
+}
+
+/* STORY SECTION */
+
+.story{
+max-width:700px;
+line-height:1.8;
+opacity:.8;
+}
+
+/* CONTACT */
+
+.contact{
+text-align:center;
+padding-bottom:150px;
+}
+
+.contact h2{
+font-size:60px;
+margin-bottom:30px;
+}
+
+/* MODAL */
+
+#modal{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.95);
+display:flex;
+align-items:center;
+justify-content:center;
+opacity:0;
+pointer-events:none;
+transition:.4s;
+z-index:2000;
+}
+
+#modal.active{
+opacity:1;
+pointer-events:auto;
+}
+
+#modal iframe{
+width:80%;
+height:80%;
+}
+
+.close{
+position:absolute;
+top:40px;
+right:60px;
+font-size:32px;
+cursor:pointer;
+}
+
+/* CURSOR */
+
+.cursor-glow{
+position:fixed;
+width:350px;
+height:350px;
+background:radial-gradient(circle,rgba(255,255,255,.08),transparent);
+pointer-events:none;
+transform:translate(-50%,-50%);
+mix-blend-mode:overlay;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+body{cursor:auto}
+
+.cursor-glow{display:none}
+
+.hero h1{font-size:44px}
+
+.film{min-width:300px}
+
+section{padding:80px 5%}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- INTRO -->
+
+<div class="intro">
+<span>J</span>
+<span>O</span>
+<span>V</span>
+<span>I</span>
+</div>
+
+<div class="cursor-glow"></div>
+
+<nav>
+<a href="#work">Work</a>
+<a href="#timeline">Journey</a>
+<a href="#about">Story</a>
+<a href="#contact">Contact</a>
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<iframe src="https://player.vimeo.com/video/1172508905?background=1&autoplay=1&loop=1&muted=1"></iframe>
+
+<div class="hero-content">
+
+<h1>JOVI ANDRA</h1>
+
+<p>Cinematic Editor for Brands & Agencies</p>
+
+<a href="#work" class="btn">View Work</a>
+
+</div>
+
+</section>
+
+<!-- WORK -->
+
+<section id="work">
+
+<h2 class="section-title">Featured Work</h2>
+
+<div class="netflix-row">
+
+<div class="film" data-video="https://player.vimeo.com/video/1172542673">
+<video muted loop>
+<source src="https://cdn.coverr.co/videos/coverr-film-camera-1603/1080p.mp4">
+</video>
+</div>
+
+<div class="film" data-video="https://player.vimeo.com/video/1172481792">
+<video muted loop>
+<source src="https://cdn.coverr.co/videos/coverr-video-editor-5176/1080p.mp4">
+</video>
+</div>
+
+<div class="film" data-video="https://player.vimeo.com/video/1172508905">
+<video muted loop>
+<source src="https://cdn.coverr.co/videos/coverr-film-production-1572/1080p.mp4">
+</video>
+</div>
+
+</div>
+
+</section>
+
+<!-- CLIENTS -->
+
+<section>
+
+<h2 class="section-title">Clients</h2>
+
+<div class="clients">
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Global_TV_Logo.svg">
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/1/1a/Kompas_TV_Logo.svg">
+
+</div>
+
+</section>
+
+<!-- TIMELINE -->
+
+<section id="timeline">
+
+<h2 class="section-title">Journey</h2>
+
+<div class="timeline-container">
+
+<div class="timeline-track">
+
+<div class="step">
+<h3>2019</h3>
+<p>Started editing YouTube content</p>
+</div>
+
+<div class="step">
+<h3>2021</h3>
+<p>Broadcast TV editing projects</p>
+</div>
+
+<div class="step">
+<h3>2023</h3>
+<p>Commercial editing for brands</p>
+</div>
+
+<div class="step">
+<h3>2025</h3>
+<p>Working with global agencies</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- STORY -->
+
+<section id="about">
+
+<h2 class="section-title">Behind The Edit</h2>
+
+<p class="story">
+
+My work focuses on cinematic storytelling, pacing and emotional impact.
+
+From commercial edits to brand films, I combine narrative rhythm,
+sound design and visual motion to craft edits that feel immersive.
+
+</p>
+
+</section>
+
+<!-- CONTACT -->
+
+<section id="contact" class="contact">
+
+<h2>Let's Work Together</h2>
+
+<p>hello@joviandra.com</p>
+
+</section>
+
+<!-- MODAL -->
+
+<div id="modal">
+
+<div class="close">✕</div>
+
+<iframe src="" frameborder="0"></iframe>
+
+</div>
+
+<script>
+
+/* INTRO ANIMATION */
+
+gsap.timeline()
+.to(".intro span",{opacity:1,y:-20,stagger:.2})
+.to(".intro",{opacity:0,delay:.6,pointerEvents:"none"})
+
+/* CURSOR */
+
+document.addEventListener("mousemove",e=>{
+gsap.to(".cursor-glow",{x:e.clientX,y:e.clientY,duration:.2})
+})
+
+/* HOVER VIDEO */
+
+document.querySelectorAll(".film").forEach(card=>{
+const vid=card.querySelector("video")
+
+card.addEventListener("mouseenter",()=>vid.play())
+card.addEventListener("mouseleave",()=>{
+vid.pause()
+vid.currentTime=0
+})
+})
+
+/* MODAL */
+
+const modal=document.querySelector("#modal")
+const iframe=modal.querySelector("iframe")
+
+document.querySelectorAll(".film").forEach(card=>{
+card.onclick=()=>{
+modal.classList.add("active")
+iframe.src=card.dataset.video+"?autoplay=1"
+}
+})
+
+document.querySelector(".close").onclick=()=>{
+modal.classList.remove("active")
+iframe.src=""
+}
+
+/* SCROLL */
+
+gsap.registerPlugin(ScrollTrigger)
+
+gsap.utils.toArray("section").forEach(section=>{
+gsap.from(section,{
+opacity:0,
+y:80,
+duration:1,
+scrollTrigger:{
+trigger:section,
+start:"top 80%"
+}
+})
+})
+
+/* TIMELINE SCROLL */
+
+gsap.to(".timeline-track",{
+xPercent:-50,
+scrollTrigger:{
+trigger:"#timeline",
+start:"top center",
+end:"+=1500",
+scrub:true,
+pin:true
+}
+})
+
+</script>
+
+</body>
+</html>
