@@ -116,6 +116,11 @@ color:black;
 border-radius:40px;
 font-weight:600;
 text-decoration:none;
+transition:.3s;
+}
+
+.btn:hover{
+transform:scale(1.05);
 }
 
 /* SECTIONS */
@@ -154,25 +159,28 @@ border-radius:12px;
 transform:rotateY(-12deg) scale(1.05);
 }
 
-/* CLIENTS */
+/* PREMIUM CLIENT LOGOS */
 
 .clients{
 display:flex;
-gap:60px;
+gap:80px;
 justify-content:center;
 flex-wrap:wrap;
+align-items:center;
+margin-top:40px;
 }
 
 .clients img{
-height:50px;
-opacity:.7;
-filter:grayscale(100%);
-transition:.3s;
+height:60px;
+opacity:.6;
+filter:grayscale(100%) brightness(1.6);
+transition:all .5s ease;
 }
 
 .clients img:hover{
 opacity:1;
 filter:none;
+transform:scale(1.08);
 }
 
 /* TIMELINE */
@@ -188,6 +196,12 @@ background:#111;
 padding:30px;
 border-radius:12px;
 border:1px solid #222;
+transition:.4s;
+}
+
+.step:hover{
+background:#1a1a1a;
+transform:translateY(-6px);
 }
 
 /* STORY */
@@ -280,8 +294,6 @@ section{padding:80px 5%}
 
 <body>
 
-<!-- INTRO -->
-
 <div class="intro">
 <span>J</span>
 <span>O</span>
@@ -298,25 +310,17 @@ section{padding:80px 5%}
 <a href="#contact">Contact</a>
 </nav>
 
-<!-- HERO -->
-
 <section class="hero">
 
-<iframe src="https://player.vimeo.com/video/1172508905?background=1&autoplay=1&loop=1&muted=1" allow="autoplay; fullscreen"></iframe>
+<iframe src="https://player.vimeo.com/video/1172508905?background=1&autoplay=1&loop=1&muted=1"></iframe>
 
 <div class="hero-content">
-
 <h1>JOVI ANDRA</h1>
-
 <p>Cinematic Editor for Brands & Agencies</p>
-
 <a href="#work" class="btn">View Work</a>
-
 </div>
 
 </section>
-
-<!-- WORK -->
 
 <section id="work">
 
@@ -346,23 +350,19 @@ section{padding:80px 5%}
 
 </section>
 
-<!-- CLIENTS -->
-
 <section>
 
 <h2 class="section-title">Clients</h2>
 
 <div class="clients">
 
-<img src="https://cdn.worldvectorlogo.com/logos/global-tv.svg">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Global_TV_logo.svg/512px-Global_TV_logo.svg.png">
 
-<img src="https://cdn.worldvectorlogo.com/logos/kompas-tv.svg">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Kompas_TV_logo.svg/512px-Kompas_TV_logo.svg.png">
 
 </div>
 
 </section>
-
-<!-- TIMELINE -->
 
 <section id="timeline">
 
@@ -394,24 +394,18 @@ section{padding:80px 5%}
 
 </section>
 
-<!-- STORY -->
-
 <section id="about">
 
 <h2 class="section-title">Behind The Edit</h2>
 
 <p class="story">
-
 My work focuses on cinematic storytelling, pacing and emotional impact.
 
 From commercial edits to brand films, I combine narrative rhythm,
 sound design and visual motion to craft edits that feel immersive.
-
 </p>
 
 </section>
-
-<!-- CONTACT -->
 
 <section id="contact" class="contact">
 
@@ -421,14 +415,9 @@ sound design and visual motion to craft edits that feel immersive.
 
 </section>
 
-<!-- MODAL -->
-
 <div id="modal">
-
 <div class="close">✕</div>
-
 <iframe src=""></iframe>
-
 </div>
 
 <script>
@@ -465,13 +454,6 @@ document.querySelector(".close").onclick=()=>{
 modal.classList.remove("active")
 iframe.src=""
 }
-
-document.addEventListener("keydown",e=>{
-if(e.key==="Escape"){
-modal.classList.remove("active")
-iframe.src=""
-}
-})
 
 gsap.registerPlugin(ScrollTrigger)
 
